@@ -1,0 +1,45 @@
+# when writing a yaml file we always give the data in key value pairs
+
+name: Python CI  # first comes the name 
+
+# trigger a workflow on any path to the main branch on the pull request 
+
+on: # on keyword is used to trigger diufferent events like push , pull , merge and delete
+    push: # push is an event 
+        branches:
+            - main 
+    pull_request: 
+        branches:
+            - main 
+
+jobs: 
+    test: # name of the task we would like to accomplish 
+        runs-on: ubuntu-latest # github provides containers were we can run and compile this data we also have windows and mac os containers as well 
+
+        steps: # every steps that we need to accomplish we can place them here 
+        # step 1 : check out the code from the repo 
+            - name: Check out code
+              uses: actions/checkout@v2  # this is an inbuilt function in github that basically goes through the codes in yout github repo or branches
+
+              # step 2 : set up the python environment 
+            - name: Set up Python
+              uses: actions/setup-python@v2 # this is a function provided by github actions to create a python environment 
+              with: 
+                python-version : '3,8'
+            
+            
+            # step 3 : install dependencies 
+            - name: Install dependencies 
+              run: 
+                python -m pip install --upgrade pip 
+                pip install -r requirements.txt
+            
+            # step 4 : run tests 
+            - name: Run tests 
+              run: pytest # as soon as you type this it will start looking for the tests folder in your repo and execute all the unit test cases  
+
+              # jnow copy and paste this in the action configure that you have done in your remote reportsitory 
+
+
+
+
