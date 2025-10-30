@@ -25,7 +25,7 @@ jobs:
             - name: Set up Python
               uses: actions/setup-python@v2 # this is a function provided by github actions to create a python environment 
               with: 
-                python-version : '3,8'
+                python-version : '3.8'
             
             
             # step 3 : install dependencies 
